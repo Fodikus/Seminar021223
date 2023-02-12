@@ -41,7 +41,38 @@ Console.WriteLine($"b1={b1}, k1={k1}, b2={b2}, k2={k2} -> ({x};{y}) ");
 
 # Рекурсия(https://acmp.ru/asp/do/index.asp?main=task&id_course=1&id_section=9&id_topic=123&id_problem=765)
 ```
+Console.Clear();
+Console.Write("Введите строку состоящую из N символов: ");
+string N = Console.ReadLine();
+while ((N.Length < 2) || (N.Length > 8))
+{
+    Console.WriteLine($"Вы ошиблись! Максимальное кол-во символов не должно превышать 8 и не должно быть меньше 1! \nВведите строку состоящую из N символов: ");
+    N = Console.ReadLine();
+}
 
+char[] ch = new char[N.Length]; 
+for (int s = 0; s < N.Length; s++) 
+{ 
+    ch[s] = N[s]; 
+} 
+
+void Permutations(char[] str, int i, int n)
+{
+    if (str[i] == str[n - 1])
+    {
+        Console.WriteLine($"Результат: {string.Join("", str)};");
+        return;
+    }
+
+    for (int j = i; j < n; j++)
+    {
+        (str[i], str[j]) = (str[j], str[i]);
+        Permutations(str, i + 1, n);
+        (str[i], str[j]) = (str[j], str[i]);       
+    }
+}
+
+Permutations(ch, 0, N.Length);
 ```
 
 # Площадь треугольника(https://acmp.ru/asp/do/index.asp?main=task&id_course=1&id_section=6&id_topic=116&id_problem=719)
